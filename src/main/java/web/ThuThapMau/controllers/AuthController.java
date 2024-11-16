@@ -1,6 +1,5 @@
 package web.ThuThapMau.controllers;
 
-import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +54,7 @@ public class AuthController {
             User user = userService.getUserByEmail(emailDto.getUser_email());
             emailService.sendEmail(emailDto.getUser_email(), user.getUser_id());
             return ResponseEntity.status(200).body("Gui mail thanh cong");
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
